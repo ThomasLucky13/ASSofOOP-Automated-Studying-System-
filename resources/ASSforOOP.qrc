@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/menuButton.svg</file>
+        <file>images/previousButton.svg</file>
+        <file>images/nextButton.svg</file>
+        <file>theoryMaterials/context.txt</file>
+        <file>theoryMaterials/ch1exmp.html</file>
+        <file>theoryMaterials/ch2exmp.html</file>
+        <file>theoryMaterials/ch3exmp.html</file>
+    </qresource>
+</RCC>
