@@ -12,11 +12,6 @@ TheoryModul::TheoryModul(QWidget *parent) :
     context = contextHTMLManager();
     chapterCount = context.countChapters();
 
-    ui->previous_button->setEnabled(false);
-
-    if (chapterCount < 2)
-        ui->next_button->setEnabled(false);
-
     for (int i = 0; i < chapterCount; ++i)
     {
         QPushButton* button = new QPushButton();
@@ -49,6 +44,17 @@ void TheoryModul::setChapter(int i )
     currentChapter = i;
     context.setChapter(i);
     ui->webEngineView->setHtml(context.HTMLText());
+
+
+    if (currentChapter == chapterCount-1)
+        ui->next_button->setEnabled(false);
+    else
+        ui->next_button->setEnabled(true);
+
+    if (currentChapter == 0)
+        ui->previous_button->setEnabled(false);
+    else
+        ui->previous_button->setEnabled(true);
 }
 
 void TheoryModul::chapterChanged(int i)
@@ -62,10 +68,6 @@ void TheoryModul::previousChapter()
     if(currentChapter>0)
     {
         setChapter(currentChapter-1);
-        if (currentChapter==0)
-            ui->previous_button->setEnabled(false);
-        if(!ui->next_button->isEnabled())
-            ui->next_button->setEnabled(true);
     }
 }
 
@@ -74,9 +76,5 @@ void TheoryModul::nextChapter()
     if(currentChapter<chapterCount-1)
     {
         setChapter(currentChapter+1);
-        if (currentChapter == chapterCount-1)
-            ui->next_button->setEnabled(false);
-        if(!ui->previous_button->isEnabled())
-            ui->previous_button->setEnabled(true);
     }
 }
