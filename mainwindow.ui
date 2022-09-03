@@ -17,7 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>ASSofOOP</string>
+   <string>ASSforOOP</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources/ASSforOOP.qrc">
+    <normaloff>:/images/ASSofOOP.svg</normaloff>:/images/ASSofOOP.svg</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>

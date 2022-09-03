@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
+        <file>images/ASSofOOP.svg</file>
         <file>images/menuButton.svg</file>
         <file>images/previousButton.svg</file>
         <file>images/nextButton.svg</file>
