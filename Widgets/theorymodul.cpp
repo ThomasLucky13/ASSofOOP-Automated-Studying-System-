@@ -6,6 +6,7 @@ TheoryModul::TheoryModul(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TheoryModul)
 {
+    qWarning("Create Theory");
     ui->setupUi(this);
 
     chaptersButtons = new QButtonGroup();
@@ -15,7 +16,8 @@ TheoryModul::TheoryModul(QWidget *parent) :
     for (int i = 0; i < chapterCount; ++i)
     {
         QPushButton* button = new QPushButton();
-        button->setText(context.chapterName(i));
+        button->setText("  " + context.chapterName(i));
+         button->setStyleSheet("text-align:left;");
         chaptersButtons->addButton(button, i);
         ui->contextLayout->addWidget(button);
     }
@@ -35,8 +37,10 @@ TheoryModul::TheoryModul(QWidget *parent) :
 
 TheoryModul::~TheoryModul()
 {
+    qWarning("Delete Theory");
     delete ui;
     delete chaptersButtons;
+    delete ui->webEngineView;
 }
 
 void TheoryModul::setChapter(int i )

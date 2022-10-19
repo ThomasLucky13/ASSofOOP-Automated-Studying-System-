@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48"
+   height="48"
+   viewBox="0 0 12.7 12.7"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="AddTheme.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="14.129837"
+     inkscape:cx="19.886995"
+     inkscape:cy="21.160895"
+     inkscape:window-width="1920"
+     inkscape:window-height="972"
+     inkscape:window-x="0"
+     inkscape:window-y="56"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:#304040;stroke:#04202c;stroke-width:1.01853;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4.6719"
+       id="path868"
+       cx="6.3499999"
+       cy="6.3500037"
+       rx="5.840734"
+       ry="5.8407359" />
+    <rect
+       style="fill:#04202c;fill-opacity:1;stroke:#04202c;stroke-width:1.05343;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4.6719"
+       id="rect2278"
+       width="4.1109824"
+       height="0.11608996"
+       x="6.3896937"
+       y="4.2492285"
+       transform="matrix(0.80651892,0.59120828,-0.52768791,0.84943832,0,0)" />
+    <rect
+       style="fill:#04202c;fill-opacity:1;stroke:#04202c;stroke-width:1.05833;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:4.6719"
+       id="rect2404"
+       width="0.30991551"
+       height="6.5755653"
+       x="10.135233"
+       y="-1.4711376"
+       transform="rotate(31.57105)" />
+  </g>
+</svg>
