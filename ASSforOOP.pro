@@ -12,6 +12,7 @@ CONFIG += c++11
 
 SOURCES += \
     Moduls/contextHTMLManager.cpp \
+    Moduls/labsstructures.cpp \
     Widgets/labsmodul.cpp \
     Widgets/testmodul.cpp \
     Widgets/theorymodul.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     Moduls/contextHTMLManager.h \
+    Moduls/labsstructures.h \
     Widgets/labsmodul.h \
     Widgets/testmodul.h \
     Widgets/theorymodul.h \
