@@ -37,6 +37,14 @@ Field::Field (int _id, QString _name, bool _isRequired, QList<QString> _methods)
     isRequired = _isRequired;
     methods = _methods;
 }
+Field::Field (int _id, Field _other)
+{
+    id = _id;
+    name = _other.name;
+    isRequired = _other.IsRequired();
+    methods = _other.Methods();
+}
+
 Field::~Field()
 {
 
@@ -161,6 +169,15 @@ Theme::Theme(int _id, QString _name, bool _isDeletable, bool _isUsable, QList<Fi
     fields = _fields;
     friendsThems = _friendsThems;
 }
+Theme::Theme(int _id, Theme _other)
+{
+    id = _id;
+    name = _other.name;
+    isDeletable = _other.IsDeletavle();
+    isUsable = _other.IsUsable();
+    fields = _other.Fields();
+    friendsThems = _other.FriendsThems();
+}
 Theme::~Theme()
 {
 
@@ -200,6 +217,10 @@ void Theme::addFriendTheme(int _i)
 {
     friendsThems.push_back(_i);
 }
+void Theme::changeField(int fieldIndex, Field field)
+{
+    fields[fieldIndex] = field;
+}
 
 int Theme::Id()
 {
@@ -221,7 +242,7 @@ QList<Field> Theme::Fields()
 {
     return fields;
 }
-QList<int> Theme::FriendsTheme()
+QList<int> Theme::FriendsThems()
 {
     return friendsThems;
 }

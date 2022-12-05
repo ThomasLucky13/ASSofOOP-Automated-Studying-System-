@@ -13,7 +13,10 @@ CONFIG += c++11
 SOURCES += \
     Moduls/contextHTMLManager.cpp \
     Moduls/labsstructures.cpp \
+    Moduls/labsthemsmanager.cpp \
+    Widgets/labfieldredaction.cpp \
     Widgets/labsmodul.cpp \
+    Widgets/labthemeredaction.cpp \
     Widgets/testmodul.cpp \
     Widgets/theorymodul.cpp \
     main.cpp \
@@ -22,13 +25,18 @@ SOURCES += \
 HEADERS += \
     Moduls/contextHTMLManager.h \
     Moduls/labsstructures.h \
+    Moduls/labsthemsmanager.h \
+    Widgets/labfieldredaction.h \
     Widgets/labsmodul.h \
+    Widgets/labthemeredaction.h \
     Widgets/testmodul.h \
     Widgets/theorymodul.h \
     mainwindow.h
 
 FORMS += \
+    Widgets/labfieldredaction.ui \
     Widgets/labsmodul.ui \
+    Widgets/labthemeredaction.ui \
     Widgets/testmodul.ui \
     Widgets/theorymodul.ui \
     mainwindow.ui

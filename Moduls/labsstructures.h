@@ -18,6 +18,7 @@ public:
     Field(int _id, QString _name);
     Field (int _id, QString _name, bool _isRequired);
     Field (int _id, QString _name, bool _isRequired, QList<QString> _methods);
+    Field (int _id, Field _other);
     ~Field();
 
     void setId(int _id);
@@ -52,6 +53,7 @@ public:
     Theme(int _id, QString _name, bool _isDeletable, bool _isUsable);
     Theme(int _id, QString _name, bool _isDeletable, bool _isUsable, QList<Field> _fields);
     Theme(int _id, QString _name, bool _isDeletable, bool _isUsable, QList<Field> _fields, QList<int> _friendsThems);
+    Theme(int _id, Theme _other);
     ~Theme();
 
     void setId(int _id);
@@ -62,13 +64,14 @@ public:
     void setFriendsThems(QList<int> _friendsThems);
     void addField(Field _field);
     void addFriendTheme(int _i);
+    void changeField(int fieldIndex, Field field);
 
     int Id();
     QString Name();
     bool IsDeletavle();
     bool IsUsable();
     QList<Field> Fields();
-    QList<int> FriendsTheme();
+    QList<int> FriendsThems();
     Field getField(int i);
     int getFriendThemeId(int i);
     int fieldsCount();

@@ -16,12 +16,16 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::PreventContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>ASSforOOP</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources/ASSforOOP.qrc">
-    <normaloff>:/images/ASSofOOP.svg</normaloff>:/images/ASSofOOP.svg</iconset>
+   <iconset>
+    <normalon>:/images/ASSofOOP.svg</normalon>
+   </iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>

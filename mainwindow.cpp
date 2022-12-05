@@ -2,6 +2,8 @@
 #include "Widgets/theorymodul.h"
 #include "Widgets/labsmodul.h"
 #include "Widgets/testmodul.h"
+#include "Widgets/labthemeredaction.h"
+#include "Widgets/labfieldredaction.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -10,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    themsManager = new LabsThemsManager();
     currentWidget = new TheoryModul();
     ui->TheoryButton->setEnabled(false);
     ui->TestButton->setEnabled(true);
@@ -26,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete themsManager;
     delete currentWidget;
 }
 
@@ -52,7 +56,38 @@ void MainWindow::testModulOn()
 void MainWindow::labsModulOn()
 {
     delete currentWidget;
-    currentWidget = new LabsModul();
+    currentWidget = new LabsModul(this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
+
+void MainWindow::labsThemeRedactionModulOn(int id)
+{
+    delete currentWidget;
+    currentThemeId = themsManager->getThemeIdFromPosition(id);
+    currentWidget = new LabThemeRedaction(currentThemeId, this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
+
+void MainWindow::labsThemeRedactionModulOn()
+{
+    delete currentWidget;
+    currentWidget = new LabThemeRedaction(currentThemeId, this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
+
+void MainWindow::labsFieldRedactionModulOn(int id)
+{
+    delete currentWidget;
+    currentWidget = new LabFieldRedaction(currentThemeId, themsManager->getFieldIdFromPosition(id, currentThemeId), this);
     ui->TheoryButton->setEnabled(true);
     ui->TestButton->setEnabled(true);
     ui->LabsButton->setEnabled(false);

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "Moduls/labsthemsmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -13,16 +14,23 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    LabsThemsManager * themsManager;
     ~MainWindow();
+
+public slots:
+    void labsModulOn();
+    void labsThemeRedactionModulOn(int id);
+    void labsThemeRedactionModulOn();
+    void labsFieldRedactionModulOn(int id);
 
 protected slots:
     void theoryModulOn();
     void testModulOn();
-    void labsModulOn();
     void settingsOpen();
 
 private:
     Ui::MainWindow *ui;
     QWidget *currentWidget;
+    int currentThemeId;
 };
 #endif // MAINWINDOW_H

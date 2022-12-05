@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QButtonGroup>
+#include "Moduls/labsthemsmanager.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class LabsModul;
@@ -13,15 +15,15 @@ class LabsModul : public QWidget
     Q_OBJECT
 
 public:
-    explicit LabsModul(QWidget *parent = nullptr);
+    explicit LabsModul(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~LabsModul();
 
 private:
     Ui::LabsModul *ui;
     QButtonGroup *themsButtons;
+    LabsThemsManager *mThemsManager;
 
 protected slots:
-    void themeChoosed(int);
 };
 
 #endif // LABSMODUL_H
