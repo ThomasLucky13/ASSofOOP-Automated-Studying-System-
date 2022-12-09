@@ -153,3 +153,43 @@ void LabsThemsManager::changeField(int themeId, int fieldId, Field field)
         unusedThems[themeIndex].changeField(fieldIndex, field);
     }
 }
+
+void LabsThemsManager::deleteField(int themeId, int fieldId)
+{
+    int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
+    if (themeIndex == -1)
+    {
+        themeIndex = usedThemsIndex(themeId);
+        if (themeIndex == -1)
+            return;
+        int fieldIndex = getFieldIndex(usedThems[themeIndex], fieldId);
+        usedThems[themeIndex].deleteField(fieldIndex);
+    } else
+    {
+        int fieldIndex = getFieldIndex(unusedThems[themeIndex], fieldId);
+        unusedThems[themeIndex].deleteField(fieldIndex);
+    }
+}
+
+void LabsThemsManager::addField(int themeId, Field field)
+{
+    int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
+    if (themeIndex == -1)
+    {
+        themeIndex = usedThemsIndex(themeId);
+        if (themeIndex == -1)
+            return;
+
+        field.setId(generateFieldId(usedThems[themeIndex]));
+        usedThems[themeIndex].addField(field);
+    } else
+    {
+        field.setId(generateFieldId(unusedThems[themeIndex]));
+        unusedThems[themeIndex].addField(field);
+    }
+}
+
+int LabsThemsManager::generateFieldId(Theme theme)
+{
+    return theme.Fields().last().Id()+1;
+}

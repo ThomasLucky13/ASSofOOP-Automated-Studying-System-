@@ -121,7 +121,7 @@
            <x>0</x>
            <y>0</y>
            <width>830</width>
-           <height>183</height>
+           <height>147</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="fieldMethodsLayout"/>
@@ -175,7 +175,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QCheckBox" name="isRequiredCheckBox">
        <property name="enabled">
@@ -192,6 +192,27 @@
        </property>
        <property name="text">
         <string>Обязательное поле</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="deleteButton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources/ASSforOOP.qrc">
+         <normaloff>:/images/Delete.svg</normaloff>:/images/Delete.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
        </property>
       </widget>
      </item>

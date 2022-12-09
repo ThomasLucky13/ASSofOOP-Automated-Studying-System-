@@ -94,6 +94,15 @@ void MainWindow::labsFieldRedactionModulOn(int id)
     ui->verticalLayout->insertWidget(0, currentWidget);
 }
 
+void MainWindow::labsFieldCreateModulOn()
+{
+    delete currentWidget;
+    currentWidget = new LabFieldRedaction(currentThemeId, this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
 void MainWindow::settingsOpen()
 {
     qWarning("settings");

@@ -26,6 +26,8 @@ public:
     void setRequired(bool _isRequired);
     void setMethods(QList<QString> _methods);
     void addMethod(QString _method);
+    void setMethod(int index, QString _method);
+    void deleteMethod(int index);
 
     int Id();
     QString Name();
@@ -65,6 +67,7 @@ public:
     void addField(Field _field);
     void addFriendTheme(int _i);
     void changeField(int fieldIndex, Field field);
+    void deleteField(int _i);
 
     int Id();
     QString Name();

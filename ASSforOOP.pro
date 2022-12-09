@@ -14,6 +14,7 @@ SOURCES += \
     Moduls/contextHTMLManager.cpp \
     Moduls/labsstructures.cpp \
     Moduls/labsthemsmanager.cpp \
+    Widgets/fieldmethoddialog.cpp \
     Widgets/labfieldredaction.cpp \
     Widgets/labsmodul.cpp \
     Widgets/labthemeredaction.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     Moduls/contextHTMLManager.h \
     Moduls/labsstructures.h \
     Moduls/labsthemsmanager.h \
+    Widgets/fieldmethoddialog.h \
     Widgets/labfieldredaction.h \
     Widgets/labsmodul.h \
     Widgets/labthemeredaction.h \
@@ -34,6 +36,7 @@ HEADERS += \
     mainwindow.h
 
 FORMS += \
+    Widgets/fieldmethoddialog.ui \
     Widgets/labfieldredaction.ui \
     Widgets/labsmodul.ui \
     Widgets/labthemeredaction.ui \

@@ -22,6 +22,7 @@ public slots:
     void labsThemeRedactionModulOn(int id);
     void labsThemeRedactionModulOn();
     void labsFieldRedactionModulOn(int id);
+    void labsFieldCreateModulOn();
 
 protected slots:
     void theoryModulOn();

@@ -13,6 +13,7 @@ private:
     int usedThemsIndex(int id);
     int unusedThemsIndex(int id);
     int getFieldIndex(Theme theme, int id);
+    int generateFieldId(Theme theme);
 
 public:
     LabsThemsManager();
@@ -28,6 +29,8 @@ public:
 
     void changeThemeUsable(int id, bool usable);
     void changeField(int themeId, int fieldId, Field field);
+    void deleteField(int themeId, int fieldId);
+    void addField(int themeId, Field field);
 
 };
 

@@ -33,6 +33,7 @@ LabThemeRedaction::LabThemeRedaction(int themeId, MainWindow* mainWindow, QWidge
     }
 
     connect(ui->backButton,  SIGNAL(clicked()), mainWindow, SLOT(labsModulOn()));
+    connect(ui->addField, SIGNAL(clicked()), mainWindow, SLOT(labsFieldCreateModulOn()));
     connect(ui->isUsableCheckBox, SIGNAL(clicked()), this, SLOT(ChangedUsable()));
     connect(themeFieldsGroup, SIGNAL(idClicked(int)), mainWindow, SLOT(labsFieldRedactionModulOn(int)));
 }

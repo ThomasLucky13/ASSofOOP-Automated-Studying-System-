@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "mainwindow.h"
 #include <QButtonGroup>
+#include <QPushButton>
 
 namespace Ui {
 class LabFieldRedaction;
@@ -15,6 +16,7 @@ class LabFieldRedaction : public QWidget
 
 public:
     explicit LabFieldRedaction(int themeId, int fieldId, MainWindow* mainWindow, QWidget *parent = nullptr);
+    explicit LabFieldRedaction(int themeId, MainWindow* mainWindow, QWidget *parent = nullptr);
     ~LabFieldRedaction();
 
 private:
@@ -24,6 +26,11 @@ private:
     LabsThemsManager * mThemsManager;
     QButtonGroup *methodsGroup;
     int mThemeId;
+    QList<QPushButton *> buttons;
+
+    bool creationMode;
+
+    void setMethods();
 
 protected slots:
     void fieldNameChanged();
@@ -31,6 +38,7 @@ protected slots:
     void isRequiredChanged();
     void openMethod(int index);
     void addMethod();
+    void deleteField();
 };
 
 #endif // LABFIELDREDACTION_H

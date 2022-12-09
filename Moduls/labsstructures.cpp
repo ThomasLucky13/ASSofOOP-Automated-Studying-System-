@@ -71,6 +71,17 @@ void Field::addMethod(QString _method)
     methods.push_back(_method);
 }
 
+void Field::setMethod(int index, QString _method)
+{
+    if (index >= methods.count()) return;
+    methods[index] = _method;
+}
+
+void Field::deleteMethod(int index)
+{
+    methods.removeAt(index);
+}
+
 int Field::Id()
 {
     return id;
@@ -221,7 +232,10 @@ void Theme::changeField(int fieldIndex, Field field)
 {
     fields[fieldIndex] = field;
 }
-
+void Theme::deleteField(int _i)
+{
+    fields.removeAt(_i);
+}
 int Theme::Id()
 {
     return id;
