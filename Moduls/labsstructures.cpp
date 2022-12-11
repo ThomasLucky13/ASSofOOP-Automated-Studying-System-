@@ -9,35 +9,35 @@ Field::Field()
     isRequired = false;
     methods = QList<QString>();
 }
-Field::Field(int _id)
+Field::Field(QString _id)
 {
     id = _id;
     name = "";
     isRequired = false;
     methods = QList<QString>();
 }
-Field::Field(int _id, QString _name)
+Field::Field(QString _id, QString _name)
 {
     id = _id;
     name = _name;
     isRequired = false;
     methods = QList<QString>();
 }
-Field::Field (int _id, QString _name, bool _isRequired)
+Field::Field (QString _id, QString _name, bool _isRequired)
 {
     id = _id;
     name = _name;
     isRequired = _isRequired;
     methods = QList<QString>();
 }
-Field::Field (int _id, QString _name, bool _isRequired, QList<QString> _methods)
+Field::Field (QString _id, QString _name, bool _isRequired, QList<QString> _methods)
 {
     id = _id;
     name = _name;
     isRequired = _isRequired;
     methods = _methods;
 }
-Field::Field (int _id, Field _other)
+Field::Field (QString _id, Field _other)
 {
     id = _id;
     name = _other.name;
@@ -50,7 +50,7 @@ Field::~Field()
 
 }
 
-void Field::setId(int _id)
+void Field::setId(QString _id)
 {
     id=_id;
 }
@@ -82,7 +82,7 @@ void Field::deleteMethod(int index)
     methods.removeAt(index);
 }
 
-int Field::Id()
+QString Field::Id()
 {
     return id;
 }
@@ -124,54 +124,54 @@ Theme::Theme()
     isDeletable = true;
     isUsable = false;
     fields = QList<Field>();
-    friendsThems = QList<int>();
+    friendsThems = QList<QString>();
 }
-Theme::Theme(int _id)
+Theme::Theme(QString _id)
 {
     id = _id;
     name = "";
     isDeletable = true;
     isUsable = false;
     fields = QList<Field>();
-    friendsThems = QList<int>();
+    friendsThems = QList<QString>();
 }
-Theme::Theme(int _id, QString _name)
+Theme::Theme(QString _id, QString _name)
 {
     id = _id;
     name = _name;
     isDeletable = true;
     isUsable = false;
     fields = QList<Field>();
-    friendsThems = QList<int>();
+    friendsThems = QList<QString>();
 }
-Theme::Theme(int _id, QString _name, bool _isDeletable)
+Theme::Theme(QString _id, QString _name, bool _isDeletable)
 {
     id = _id;
     name = _name;
     isDeletable = _isDeletable;
     isUsable = false;
     fields = QList<Field>();
-    friendsThems = QList<int>();
+    friendsThems = QList<QString>();
 }
-Theme::Theme(int _id, QString _name, bool _isDeletable, bool _isUsable)
+Theme::Theme(QString _id, QString _name, bool _isDeletable, bool _isUsable)
 {
     id = _id;
     name = _name;
     isDeletable = _isDeletable;
     isUsable = _isUsable;
     fields = QList<Field>();
-    friendsThems = QList<int>();
+    friendsThems = QList<QString>();
 }
-Theme::Theme(int _id, QString _name, bool _isDeletable, bool _isUsable, QList<Field> _fields)
+Theme::Theme(QString _id, QString _name, bool _isDeletable, bool _isUsable, QList<Field> _fields)
 {
     id = _id;
     name = _name;
     isDeletable = _isDeletable;
     isUsable = _isUsable;
     fields = _fields;
-    friendsThems = QList<int>();
+    friendsThems = QList<QString>();
 }
-Theme::Theme(int _id, QString _name, bool _isDeletable, bool _isUsable, QList<Field> _fields, QList<int> _friendsThems)
+Theme::Theme(QString _id, QString _name, bool _isDeletable, bool _isUsable, QList<Field> _fields, QList<QString> _friendsThems)
 {
     id = _id;
     name = _name;
@@ -180,7 +180,7 @@ Theme::Theme(int _id, QString _name, bool _isDeletable, bool _isUsable, QList<Fi
     fields = _fields;
     friendsThems = _friendsThems;
 }
-Theme::Theme(int _id, Theme _other)
+Theme::Theme(QString _id, Theme _other)
 {
     id = _id;
     name = _other.name;
@@ -194,7 +194,7 @@ Theme::~Theme()
 
 }
 
-void Theme::setId(int _id)
+void Theme::setId(QString _id)
 {
     id = _id;
 }
@@ -216,7 +216,7 @@ void Theme::setFields(QList<Field> _fields)
 {
     fields = _fields;
 }
-void Theme::setFriendsThems(QList<int> _friendsThems)
+void Theme::setFriendsThems(QList<QString> _friendsThems)
 {
     friendsThems = _friendsThems;
 }
@@ -232,7 +232,7 @@ void Theme::deleteField(int _i)
 {
     fields.removeAt(_i);
 }
-int Theme::Id()
+QString Theme::Id()
 {
     return id;
 }
@@ -252,7 +252,7 @@ QList<Field> Theme::Fields()
 {
     return fields;
 }
-QList<int> Theme::FriendsThems()
+QList<QString> Theme::FriendsThems()
 {
     return friendsThems;
 }
@@ -262,15 +262,15 @@ Field Theme::getField(int i)
     {
         return fields[i];
     }
-    return Field(-1, "NotFounded", false);
+    return Field("-1", "NotFounded", false);
 }
-int Theme::getFriendThemeId(int i)
+QString Theme::getFriendThemeId(int i)
 {
     if (i<friendsThems.length())
     {
         return friendsThems[i];
     }
-    return -1;
+    return "-1";
 }
 int Theme::fieldsCount()
 {
@@ -280,12 +280,12 @@ int Theme::friendsThemsCount()
 {
     return friendsThems.length();
 }
-void Theme::addFriendTheme(int _id)
+void Theme::addFriendTheme(QString _id)
 {
     if(friendsThems.contains(_id)) return;
     friendsThems.push_back(_id);
 }
-void Theme::deleteFriendTheme(int _id)
+void Theme::deleteFriendTheme(QString _id)
 {
     if(friendsThems.contains(_id)) friendsThems.removeAll(_id);
 }

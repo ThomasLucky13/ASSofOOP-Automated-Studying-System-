@@ -15,7 +15,7 @@ class LabFieldRedaction : public QWidget
     Q_OBJECT
 
 public:
-    explicit LabFieldRedaction(int fieldId, MainWindow* mainWindow, QWidget *parent = nullptr);
+    explicit LabFieldRedaction(QString fieldId, MainWindow* mainWindow, QWidget *parent = nullptr);
     explicit LabFieldRedaction(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~LabFieldRedaction();
 

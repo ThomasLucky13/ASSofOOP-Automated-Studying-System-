@@ -113,7 +113,7 @@ void MainWindow::labsThemeCreateModulOn()
 {
     delete currentWidget;
     themeCreation = true;
-    themsManager->creationTheme = new Theme(-1, "", true, true, QList<Field>(), QList<int>());
+    themsManager->creationTheme = new Theme("-1", "", true, true, QList<Field>(), QList<QString>());
     currentWidget = new LabThemeRedaction(themsManager->creationTheme, this);
     ui->TheoryButton->setEnabled(true);
     ui->TestButton->setEnabled(true);

@@ -3,7 +3,7 @@
 #include "Widgets/fieldmethoddialog.h"
 #include <QtCore>
 
-LabFieldRedaction::LabFieldRedaction(int fieldId, MainWindow* mainWindow, QWidget *parent) :
+LabFieldRedaction::LabFieldRedaction(QString fieldId, MainWindow* mainWindow, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LabFieldRedaction)
 {

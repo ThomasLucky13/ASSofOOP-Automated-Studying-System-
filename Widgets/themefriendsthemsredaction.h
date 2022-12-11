@@ -15,14 +15,14 @@ class themeFriendsThemsRedaction : public QDialog
 
 public:
     explicit themeFriendsThemsRedaction(LabsThemsManager* themsManager, QWidget *parent = nullptr);
-    QList<int> result();
+    QList<QString> result();
     ~themeFriendsThemsRedaction();
 
 private:
     Ui::themeFriendsThemsRedaction *ui;
     LabsThemsManager *mThemsManager;
     QList<QCheckBox*> mCheckBoxes;
-    QList<std::tuple<int, bool>> themsRes;
+    QList<std::tuple<QString, bool>> themsRes;
 
 protected slots:
     void saveChanges();

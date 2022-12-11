@@ -8,7 +8,7 @@ themeFriendsThemsRedaction::themeFriendsThemsRedaction(LabsThemsManager* themsMa
     ui->setupUi(this);
     mThemsManager = themsManager;
     QList<Theme> thems = mThemsManager->thems();
-    QList<int> currentFriendsThems = themsManager->creationTheme->FriendsThems();
+    QList<QString> currentFriendsThems = themsManager->creationTheme->FriendsThems();
     for (int i = 0; i < thems.count(); ++i)
     {
         if (thems[i].Id() != themsManager->creationTheme->Id())
@@ -46,9 +46,9 @@ void themeFriendsThemsRedaction::saveChanges()
     QDialog::accept();
 }
 
-QList<int> themeFriendsThemsRedaction::result()
+QList<QString> themeFriendsThemsRedaction::result()
 {
-    QList<int> res;
+    QList<QString> res;
     for (int i = 0; i < themsRes.count(); ++i)
     {
         if (std::get<1>(themsRes[i]) == true)

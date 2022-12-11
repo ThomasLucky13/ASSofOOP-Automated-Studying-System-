@@ -1,5 +1,6 @@
 #include "labsthemsmanager.h"
-#include <iostream>
+#include <QtCore>
+#include <QUuid>
 
 LabsThemsManager::LabsThemsManager()
 {
@@ -21,16 +22,16 @@ void LabsThemsManager::updateManager()
     QList<Field> fields;
     for (int i = 0; i < 5; ++i)
     {
-        fields.push_back(Field(i, "Field " + QString::number(i), true, methods));
+        fields.push_back(Field(QString::number(i), "Field " + QString::number(i), true, methods));
     }
     for (int i = 0; i <5; ++i)
     {
-        usedThems.push_back(Theme(i, "Theme " + QString::number(i), false, true, fields));
+        usedThems.push_back(Theme(QString::number(i), "Theme " + QString::number(i), false, true, fields));
     }
 
     for (int i = 5; i <10; ++i)
     {
-        unusedThems.push_back(Theme(i, "Theme " + QString::number(i), false, false, fields));
+        unusedThems.push_back(Theme(QString::number(i), "Theme " + QString::number(i), false, false, fields));
     }
 }
 QList<Theme> LabsThemsManager::thems()
@@ -40,7 +41,7 @@ QList<Theme> LabsThemsManager::thems()
     return res;
 }
 
-Theme * LabsThemsManager::getTheme(int id)
+Theme * LabsThemsManager::getTheme(QString id)
 {
     for (int i = 0; i < usedThems.count(); ++i)
     {
@@ -59,7 +60,7 @@ Theme * LabsThemsManager::getTheme(int id)
     return NULL;
 }
 
-int LabsThemsManager::usedThemsIndex(int id)
+int LabsThemsManager::usedThemsIndex(QString id)
 {
     for (int i = 0; i < usedThems.count(); ++i)
     {
@@ -68,7 +69,7 @@ int LabsThemsManager::usedThemsIndex(int id)
     }
     return -1;
 }
-int LabsThemsManager::unusedThemsIndex(int id)
+int LabsThemsManager::unusedThemsIndex(QString id)
 {
     for (int i = 0; i < unusedThems.count(); ++i)
     {
@@ -78,7 +79,7 @@ int LabsThemsManager::unusedThemsIndex(int id)
     return -1;
 }
 
-int LabsThemsManager::getFieldIndex(Theme* theme, int id)
+int LabsThemsManager::getFieldIndex(Theme* theme, QString id)
 {
     for (int i = 0; i < theme->fieldsCount(); ++i)
     {
@@ -88,7 +89,7 @@ int LabsThemsManager::getFieldIndex(Theme* theme, int id)
     return -1;
 }
 
-int LabsThemsManager::getThemeIdFromPosition(int index)
+QString LabsThemsManager::getThemeIdFromPosition(int index)
 {
     if (index<usedThems.count())
     {
@@ -97,18 +98,18 @@ int LabsThemsManager::getThemeIdFromPosition(int index)
     return unusedThems[index-usedThems.count()].Id();
 }
 
-int LabsThemsManager::getFieldIdFromPosition(int index)
+QString LabsThemsManager::getFieldIdFromPosition(int index)
 {
     if(creationTheme->Fields().count() > index)
     {
         return creationTheme->Fields()[index].Id();
     } else
     {
-        return -1;
+        return "-1";
     }
 }
 
-Field* LabsThemsManager::getField(int id)
+Field* LabsThemsManager::getField(QString id)
 {
     for (int i = 0; i < creationTheme->Fields().count(); ++i)
     {
@@ -120,13 +121,13 @@ Field* LabsThemsManager::getField(int id)
     return NULL;
 }
 
-void LabsThemsManager::changeField(int fieldId, Field field)
+void LabsThemsManager::changeField(QString fieldId, Field field)
 {
     int fieldIndex = getFieldIndex(creationTheme, fieldId);
     creationTheme->changeField(fieldIndex, field);
 }
 
-void LabsThemsManager::deleteField(int fieldId)
+void LabsThemsManager::deleteField(QString fieldId)
 {
     int fieldIndex = getFieldIndex(creationTheme, fieldId);
     creationTheme->deleteField(fieldIndex);
@@ -134,16 +135,18 @@ void LabsThemsManager::deleteField(int fieldId)
 
 void LabsThemsManager::addField(Field field)
 {
+    field.setId(QUuid().createUuid().toString());
+    qWarning()<<field.Id();
     creationTheme->addField(field);
 }
 
-int LabsThemsManager::generateFieldId(Theme theme)
+QString LabsThemsManager::generateFieldId(Theme theme)
 {
     if(theme.Fields().count()==0) return 0;
-    return theme.Fields().last().Id()+1;
+    return QString::number(theme.Fields().last().Id().toInt()+1);
 }
 
-void LabsThemsManager::changeTheme(int themeId, Theme theme)
+void LabsThemsManager::changeTheme(QString themeId, Theme theme)
 {
     int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
     if (themeIndex == -1)
@@ -175,7 +178,7 @@ void LabsThemsManager::changeTheme(int themeId, Theme theme)
     changeFriendsThems(themeId, theme.FriendsThems());
 }
 
-void LabsThemsManager::deleteTheme(int themeId)
+void LabsThemsManager::deleteTheme(QString themeId)
 {
     int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
     if (themeIndex == -1)
@@ -188,12 +191,14 @@ void LabsThemsManager::deleteTheme(int themeId)
     {
         unusedThems.removeAt(themeIndex);
     }
-    changeFriendsThems(themeId, QList<int>());
+    changeFriendsThems(themeId, QList<QString>());
 }
 
 void LabsThemsManager::addTheme(Theme theme)
 {
-    theme.setId(generateThemeId());
+    //theme.setId(generateThemeId());
+    theme.setId(QUuid().createUuid().toString());
+    qWarning()<<theme.Id();
     if (theme.IsUsable())
     {
         usedThems.push_back(theme);
@@ -204,27 +209,27 @@ void LabsThemsManager::addTheme(Theme theme)
     changeFriendsThems(theme.Id(), theme.FriendsThems());
 }
 
-int LabsThemsManager::generateThemeId()
+QString LabsThemsManager::generateThemeId()
 {
     int res=0;
     for (int i = 0; i < usedThems.count(); ++i)
     {
-        if (usedThems[i].Id()>res)
+        if (usedThems[i].Id().toInt()>res)
         {
-            res = usedThems[i].Id();
+            res = usedThems[i].Id().toInt();
         }
     }
     for (int i = 0; i < unusedThems.count(); ++i)
     {
-        if(unusedThems[i].Id()>res)
+        if(unusedThems[i].Id().toInt()>res)
         {
-            res = unusedThems[i].Id();
+            res = unusedThems[i].Id().toInt();
         }
     }
-    return res+1;
+    return QString::number(res+1);
 }
 
-void LabsThemsManager::changeFriendsThems(int themeId, QList<int> friendsThems)
+void LabsThemsManager::changeFriendsThems(QString themeId, QList<QString> friendsThems)
 {
     for (int i = 0; i < usedThems.count(); ++i)
     {

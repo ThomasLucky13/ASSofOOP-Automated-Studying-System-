@@ -10,13 +10,13 @@ private:
     QList <Theme> usedThems;
     QList <Theme> unusedThems;
 
-    int usedThemsIndex(int id);
-    int unusedThemsIndex(int id);
-    int getFieldIndex(Theme* theme, int id);
-    int generateFieldId(Theme theme);
-    int generateThemeId();
+    int usedThemsIndex(QString id);
+    int unusedThemsIndex(QString id);
+    int getFieldIndex(Theme* theme, QString id);
+    QString generateFieldId(Theme theme);
+    QString generateThemeId();
 
-    void changeFriendsThems(int themeId, QList<int> friendsThems);
+    void changeFriendsThems(QString themeId, QList<QString> friendsThems);
 
 
 public:
@@ -26,18 +26,18 @@ public:
     void updateManager();
     QList<Theme> thems();
 
-    Theme* getTheme(int id);
-    Field* getField(int id);
+    Theme* getTheme(QString id);
+    Field* getField(QString id);
 
-    int getThemeIdFromPosition(int index);
-    int getFieldIdFromPosition(int index);
+    QString getThemeIdFromPosition(int index);
+    QString getFieldIdFromPosition(int index);
 
-    void changeField(int fieldId, Field field);
-    void deleteField(int fieldId);
+    void changeField(QString fieldId, Field field);
+    void deleteField(QString fieldId);
     void addField(Field field);
 
-    void changeTheme(int themeId, Theme theme);
-    void deleteTheme(int themeId);
+    void changeTheme(QString themeId, Theme theme);
+    void deleteTheme(QString themeId);
     void addTheme(Theme theme);
     Theme* creationTheme;
 };
