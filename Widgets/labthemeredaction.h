@@ -15,19 +15,24 @@ class LabThemeRedaction : public QWidget
     Q_OBJECT
 
 public:
-    explicit LabThemeRedaction(int themeId, MainWindow* mainWindow, QWidget *parent = nullptr);
+    explicit LabThemeRedaction(bool _creationMode, MainWindow* mainWindow, QWidget *parent = nullptr);
     ~LabThemeRedaction();
 
 private:
     Ui::LabThemeRedaction *ui;
+
     Theme * mTheme;
     LabsThemsManager * mThemsManager;
-    void closeTheme(MainWindow* mainWindow);
-
     QButtonGroup *themeFieldsGroup;
 
+    bool creationMode;
+
 protected slots:
-    void ChangedUsable();
+    void themeNameChanged();
+    void saveChanges();
+    void isUsableChanged();
+    void deleteTheme();
+    void friendsThemsRedaction();
 
 };
 

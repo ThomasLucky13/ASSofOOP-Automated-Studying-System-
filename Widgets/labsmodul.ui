@@ -149,7 +149,7 @@ background-color: rgb(91, 112, 101);</string>
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="addTheme">
         <property name="styleSheet">
          <string notr="true"/>
         </property>

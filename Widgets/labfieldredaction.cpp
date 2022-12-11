@@ -3,20 +3,21 @@
 #include "Widgets/fieldmethoddialog.h"
 #include <QtCore>
 
-LabFieldRedaction::LabFieldRedaction(int themeId, int fieldId, MainWindow* mainWindow, QWidget *parent) :
+LabFieldRedaction::LabFieldRedaction(int fieldId, MainWindow* mainWindow, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LabFieldRedaction)
 {
     ui->setupUi(this);
     mThemsManager = mainWindow->themsManager;
     creationMode = false;
-    mField = mThemsManager->getField(themeId, fieldId);
-    mThemeId = themeId;
+    mField = mThemsManager->getField(fieldId);
     if (!mField)
     {
         qWarning("Поле не найдено!");
         ui->savedChanges->setEnabled(false);
         ui->isRequiredCheckBox->setEnabled(false);
+        ui->deleteButton->setEnabled(false);
+        ui->addMethod->setEnabled(false);
     } else
     {
         ui->FieldName->setText(mField->Name());
@@ -34,7 +35,7 @@ LabFieldRedaction::LabFieldRedaction(int themeId, int fieldId, MainWindow* mainW
     connect(ui->addMethod, SIGNAL(clicked()), this, SLOT(addMethod()));
 }
 
-LabFieldRedaction::LabFieldRedaction(int themeId, MainWindow* mainWindow, QWidget *parent) :
+LabFieldRedaction::LabFieldRedaction(MainWindow* mainWindow, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LabFieldRedaction)
 {
@@ -42,7 +43,6 @@ LabFieldRedaction::LabFieldRedaction(int themeId, MainWindow* mainWindow, QWidge
     mThemsManager = mainWindow->themsManager;
     creationMode = true;
     mField = new Field();
-    mThemeId = themeId;
 
     ui->FieldName->setText(mField->Name());
     ui->isRequiredCheckBox->setChecked(mField->IsRequired());
@@ -80,10 +80,10 @@ void LabFieldRedaction::saveChanges()
     }
     if (creationMode)
     {
-        mThemsManager->addField(mThemeId, Field(mField->Id(), mField->Name(), mField->IsRequired(), mField->Methods()));
+        mThemsManager->addField(Field(mField->Id(), mField->Name(), mField->IsRequired(), mField->Methods()));
     } else
     {
-        mThemsManager->changeField(mThemeId, mField->Id(), Field(mField->Id(), mField->Name(), mField->IsRequired(), mField->Methods()));
+        mThemsManager->changeField(mField->Id(), Field(mField->Id(), mField->Name(), mField->IsRequired(), mField->Methods()));
     }
     ui->backButton->click();
 }
@@ -147,7 +147,6 @@ void LabFieldRedaction::setMethods()
         button->setText("  " + methodName);
         button->setStyleSheet("text-align:left;\ncolor: rgb(201, 209, 200);");
         methodsGroup->addButton(button, i);
-        buttons.push_back(button);
         ui->fieldMethodsLayout->addWidget(button);
     }
     ui->fieldMethodsLayout->addSpacerItem(
@@ -157,6 +156,6 @@ void LabFieldRedaction::setMethods()
 
 void LabFieldRedaction::deleteField()
 {
-    mThemsManager->deleteField(mThemeId, mField->Id());
+    mThemsManager->deleteField(mField->Id());
     ui->backButton->click();
 }

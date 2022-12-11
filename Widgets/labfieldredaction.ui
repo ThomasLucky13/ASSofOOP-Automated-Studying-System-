@@ -70,7 +70,7 @@
           </property>
           <property name="font">
            <font>
-            <pointsize>12</pointsize>
+            <pointsize>14</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -80,6 +80,9 @@
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>(название поля)</string>
           </property>
          </widget>
         </item>
@@ -213,6 +216,9 @@
          <width>60</width>
          <height>60</height>
         </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

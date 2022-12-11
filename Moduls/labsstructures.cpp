@@ -184,7 +184,7 @@ Theme::Theme(int _id, Theme _other)
 {
     id = _id;
     name = _other.name;
-    isDeletable = _other.IsDeletavle();
+    isDeletable = _other.IsDeletable();
     isUsable = _other.IsUsable();
     fields = _other.Fields();
     friendsThems = _other.FriendsThems();
@@ -224,10 +224,6 @@ void Theme::addField(Field _field)
 {
     fields.push_back(_field);
 }
-void Theme::addFriendTheme(int _i)
-{
-    friendsThems.push_back(_i);
-}
 void Theme::changeField(int fieldIndex, Field field)
 {
     fields[fieldIndex] = field;
@@ -244,7 +240,7 @@ QString Theme::Name()
 {
     return name;
 }
-bool Theme::IsDeletavle()
+bool Theme::IsDeletable()
 {
     return isDeletable;
 }
@@ -284,5 +280,13 @@ int Theme::friendsThemsCount()
 {
     return friendsThems.length();
 }
-
+void Theme::addFriendTheme(int _id)
+{
+    if(friendsThems.contains(_id)) return;
+    friendsThems.push_back(_id);
+}
+void Theme::deleteFriendTheme(int _id)
+{
+    if(friendsThems.contains(_id)) friendsThems.removeAll(_id);
+}
 //===================================================================//

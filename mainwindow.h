@@ -23,6 +23,7 @@ public slots:
     void labsThemeRedactionModulOn();
     void labsFieldRedactionModulOn(int id);
     void labsFieldCreateModulOn();
+    void labsThemeCreateModulOn();
 
 protected slots:
     void theoryModulOn();
@@ -33,5 +34,6 @@ private:
     Ui::MainWindow *ui;
     QWidget *currentWidget;
     int currentThemeId;
+    bool themeCreation;
 };
 #endif // MAINWINDOW_H

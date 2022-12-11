@@ -19,6 +19,7 @@ SOURCES += \
     Widgets/labsmodul.cpp \
     Widgets/labthemeredaction.cpp \
     Widgets/testmodul.cpp \
+    Widgets/themefriendsthemsredaction.cpp \
     Widgets/theorymodul.cpp \
     main.cpp \
     mainwindow.cpp
@@ -32,6 +33,7 @@ HEADERS += \
     Widgets/labsmodul.h \
     Widgets/labthemeredaction.h \
     Widgets/testmodul.h \
+    Widgets/themefriendsthemsredaction.h \
     Widgets/theorymodul.h \
     mainwindow.h
 
@@ -41,6 +43,7 @@ FORMS += \
     Widgets/labsmodul.ui \
     Widgets/labthemeredaction.ui \
     Widgets/testmodul.ui \
+    Widgets/themefriendsthemsredaction.ui \
     Widgets/theorymodul.ui \
     mainwindow.ui
 

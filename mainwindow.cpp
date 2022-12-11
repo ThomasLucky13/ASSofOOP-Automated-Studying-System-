@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->verticalLayout->insertWidget(0, currentWidget);
 
+    themeCreation = false;
+
     connect(ui->TheoryButton, SIGNAL(clicked()), this, SLOT(theoryModulOn()));
     connect(ui->TestButton, SIGNAL(clicked()), this, SLOT(testModulOn()));
     connect(ui->LabsButton, SIGNAL(clicked()), this, SLOT(labsModulOn()));
@@ -35,6 +37,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::theoryModulOn()
 {
+    themeCreation = false;
     delete currentWidget;
     currentWidget = new TheoryModul();
     ui->TheoryButton->setEnabled(false);
@@ -45,6 +48,7 @@ void MainWindow::theoryModulOn()
 
 void MainWindow::testModulOn()
 {
+    themeCreation = false;
     delete currentWidget;
     currentWidget = new TestModul();
     ui->TheoryButton->setEnabled(true);
@@ -55,6 +59,7 @@ void MainWindow::testModulOn()
 
 void MainWindow::labsModulOn()
 {
+    themeCreation = false;
     delete currentWidget;
     currentWidget = new LabsModul(this);
     ui->TheoryButton->setEnabled(true);
@@ -66,8 +71,8 @@ void MainWindow::labsModulOn()
 void MainWindow::labsThemeRedactionModulOn(int id)
 {
     delete currentWidget;
-    currentThemeId = themsManager->getThemeIdFromPosition(id);
-    currentWidget = new LabThemeRedaction(currentThemeId, this);
+    themsManager->creationTheme = themsManager->getTheme(themsManager->getThemeIdFromPosition(id));
+    currentWidget = new LabThemeRedaction(themeCreation, this);
     ui->TheoryButton->setEnabled(true);
     ui->TestButton->setEnabled(true);
     ui->LabsButton->setEnabled(false);
@@ -77,7 +82,7 @@ void MainWindow::labsThemeRedactionModulOn(int id)
 void MainWindow::labsThemeRedactionModulOn()
 {
     delete currentWidget;
-    currentWidget = new LabThemeRedaction(currentThemeId, this);
+    currentWidget = new LabThemeRedaction(themeCreation, this);
     ui->TheoryButton->setEnabled(true);
     ui->TestButton->setEnabled(true);
     ui->LabsButton->setEnabled(false);
@@ -87,7 +92,7 @@ void MainWindow::labsThemeRedactionModulOn()
 void MainWindow::labsFieldRedactionModulOn(int id)
 {
     delete currentWidget;
-    currentWidget = new LabFieldRedaction(currentThemeId, themsManager->getFieldIdFromPosition(id, currentThemeId), this);
+    currentWidget = new LabFieldRedaction(themsManager->getFieldIdFromPosition(id), this);
     ui->TheoryButton->setEnabled(true);
     ui->TestButton->setEnabled(true);
     ui->LabsButton->setEnabled(false);
@@ -97,12 +102,26 @@ void MainWindow::labsFieldRedactionModulOn(int id)
 void MainWindow::labsFieldCreateModulOn()
 {
     delete currentWidget;
-    currentWidget = new LabFieldRedaction(currentThemeId, this);
+    currentWidget = new LabFieldRedaction(this);
     ui->TheoryButton->setEnabled(true);
     ui->TestButton->setEnabled(true);
     ui->LabsButton->setEnabled(false);
     ui->verticalLayout->insertWidget(0, currentWidget);
 }
+
+void MainWindow::labsThemeCreateModulOn()
+{
+    delete currentWidget;
+    themeCreation = true;
+    themsManager->creationTheme = new Theme(-1, "", true, true, QList<Field>(), QList<int>());
+    currentWidget = new LabThemeRedaction(themsManager->creationTheme, this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
+
+
 void MainWindow::settingsOpen()
 {
     qWarning("settings");

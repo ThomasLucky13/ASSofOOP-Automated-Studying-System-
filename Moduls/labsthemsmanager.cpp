@@ -6,6 +6,11 @@ LabsThemsManager::LabsThemsManager()
     updateManager();
 }
 
+LabsThemsManager::~LabsThemsManager()
+{
+    delete creationTheme;
+}
+
 void LabsThemsManager::updateManager()
 {
     QList <QString> methods;
@@ -73,36 +78,14 @@ int LabsThemsManager::unusedThemsIndex(int id)
     return -1;
 }
 
-int LabsThemsManager::getFieldIndex(Theme theme, int id)
+int LabsThemsManager::getFieldIndex(Theme* theme, int id)
 {
-    for (int i = 0; i < theme.fieldsCount(); ++i)
+    for (int i = 0; i < theme->fieldsCount(); ++i)
     {
-        if (theme.Fields()[i].Id() == id)
+        if (theme->Fields()[i].Id() == id)
             return i;
     }
     return -1;
-}
-
-void LabsThemsManager::changeThemeUsable(int id, bool usable)
-{
-    if (usable) //Если тема теперь используется
-    {
-        int index = unusedThemsIndex(id);  //ищем тему среди неиспользуемых
-        if (index == -1) return;
-        Theme theme = unusedThems[index];
-        theme.setUsable(true);
-        unusedThems.removeAt(index);
-        usedThems.push_back(theme);
-
-    } else              //Если тема теперь не используется
-    {
-        int index = usedThemsIndex(id);   //ищем тему среди используемых
-        if (index == -1) return;
-        Theme theme = usedThems[index];
-        theme.setUsable(false);
-        usedThems.removeAt(index);
-        unusedThems.push_back(theme);
-    }
 }
 
 int LabsThemsManager::getThemeIdFromPosition(int index)
@@ -114,82 +97,154 @@ int LabsThemsManager::getThemeIdFromPosition(int index)
     return unusedThems[index-usedThems.count()].Id();
 }
 
-int LabsThemsManager::getFieldIdFromPosition(int index, int themeId)
+int LabsThemsManager::getFieldIdFromPosition(int index)
 {
-    Theme* theme = getTheme(themeId);
-    return theme->Fields()[index].Id();
+    if(creationTheme->Fields().count() > index)
+    {
+        return creationTheme->Fields()[index].Id();
+    } else
+    {
+        return -1;
+    }
 }
 
-Field* LabsThemsManager::getField(int themeId, int id)
+Field* LabsThemsManager::getField(int id)
 {
-    Theme* theme = getTheme(themeId);
-
-    if (theme != NULL)
+    for (int i = 0; i < creationTheme->Fields().count(); ++i)
     {
-        for (int i = 0; i < theme->Fields().count(); ++i)
+        if (creationTheme->Fields()[i].Id() == id)
         {
-            if (theme->Fields()[i].Id() == id)
-            {
-                return new Field(id, theme->Fields()[i]);
-            }
+            return new Field(id, creationTheme->Fields()[i]);
         }
     }
     return NULL;
 }
 
-void LabsThemsManager::changeField(int themeId, int fieldId, Field field)
+void LabsThemsManager::changeField(int fieldId, Field field)
 {
-    int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
-    if (themeIndex == -1)
-    {
-        themeIndex = usedThemsIndex(themeId);
-        if (themeIndex == -1)
-            return;
-        int fieldIndex = getFieldIndex(usedThems[themeIndex], fieldId);
-        usedThems[themeIndex].changeField(fieldIndex, field);
-    } else
-    {
-        int fieldIndex = getFieldIndex(unusedThems[themeIndex], fieldId);
-        unusedThems[themeIndex].changeField(fieldIndex, field);
-    }
+    int fieldIndex = getFieldIndex(creationTheme, fieldId);
+    creationTheme->changeField(fieldIndex, field);
 }
 
-void LabsThemsManager::deleteField(int themeId, int fieldId)
+void LabsThemsManager::deleteField(int fieldId)
 {
-    int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
-    if (themeIndex == -1)
-    {
-        themeIndex = usedThemsIndex(themeId);
-        if (themeIndex == -1)
-            return;
-        int fieldIndex = getFieldIndex(usedThems[themeIndex], fieldId);
-        usedThems[themeIndex].deleteField(fieldIndex);
-    } else
-    {
-        int fieldIndex = getFieldIndex(unusedThems[themeIndex], fieldId);
-        unusedThems[themeIndex].deleteField(fieldIndex);
-    }
+    int fieldIndex = getFieldIndex(creationTheme, fieldId);
+    creationTheme->deleteField(fieldIndex);
 }
 
-void LabsThemsManager::addField(int themeId, Field field)
+void LabsThemsManager::addField(Field field)
 {
-    int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
-    if (themeIndex == -1)
-    {
-        themeIndex = usedThemsIndex(themeId);
-        if (themeIndex == -1)
-            return;
-
-        field.setId(generateFieldId(usedThems[themeIndex]));
-        usedThems[themeIndex].addField(field);
-    } else
-    {
-        field.setId(generateFieldId(unusedThems[themeIndex]));
-        unusedThems[themeIndex].addField(field);
-    }
+    creationTheme->addField(field);
 }
 
 int LabsThemsManager::generateFieldId(Theme theme)
 {
+    if(theme.Fields().count()==0) return 0;
     return theme.Fields().last().Id()+1;
+}
+
+void LabsThemsManager::changeTheme(int themeId, Theme theme)
+{
+    int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
+    if (themeIndex == -1)
+    {
+        themeIndex = usedThemsIndex(themeId);
+        if (themeIndex == -1)
+        {
+            return;
+        }
+        if(theme.IsUsable())
+        {
+            usedThems[themeIndex] = theme;
+        } else
+        {
+            usedThems.removeAt(themeIndex);
+            unusedThems.push_back(theme);
+        }
+    } else
+    {
+        if(theme.IsUsable())
+        {
+            unusedThems.removeAt(themeIndex);
+            usedThems.push_back(theme);
+        } else
+        {
+            unusedThems[themeIndex] = theme;
+        }
+    }
+    changeFriendsThems(themeId, theme.FriendsThems());
+}
+
+void LabsThemsManager::deleteTheme(int themeId)
+{
+    int themeIndex = unusedThemsIndex(themeId);  //ищем тему среди неиспользуемых
+    if (themeIndex == -1)
+    {
+        themeIndex = usedThemsIndex(themeId);
+        if (themeIndex == -1)
+            return;
+        usedThems.removeAt(themeIndex);
+    } else
+    {
+        unusedThems.removeAt(themeIndex);
+    }
+    changeFriendsThems(themeId, QList<int>());
+}
+
+void LabsThemsManager::addTheme(Theme theme)
+{
+    theme.setId(generateThemeId());
+    if (theme.IsUsable())
+    {
+        usedThems.push_back(theme);
+    } else
+    {
+        unusedThems.push_back(theme);
+    }
+    changeFriendsThems(theme.Id(), theme.FriendsThems());
+}
+
+int LabsThemsManager::generateThemeId()
+{
+    int res=0;
+    for (int i = 0; i < usedThems.count(); ++i)
+    {
+        if (usedThems[i].Id()>res)
+        {
+            res = usedThems[i].Id();
+        }
+    }
+    for (int i = 0; i < unusedThems.count(); ++i)
+    {
+        if(unusedThems[i].Id()>res)
+        {
+            res = unusedThems[i].Id();
+        }
+    }
+    return res+1;
+}
+
+void LabsThemsManager::changeFriendsThems(int themeId, QList<int> friendsThems)
+{
+    for (int i = 0; i < usedThems.count(); ++i)
+    {
+        if (friendsThems.contains(usedThems[i].Id()))
+        {
+            usedThems[i].addFriendTheme(themeId);
+        } else
+        {
+            usedThems[i].deleteFriendTheme(themeId);
+        }
+    }
+
+    for(int i = 0; i < unusedThems.count(); ++i)
+    {
+        if (friendsThems.contains(unusedThems[i].Id()))
+        {
+            unusedThems[i].addFriendTheme(themeId);
+        } else
+        {
+           unusedThems[i].deleteFriendTheme(themeId);
+        }
+    }
 }

@@ -65,13 +65,14 @@ public:
     void setFields(QList<Field> _fields);
     void setFriendsThems(QList<int> _friendsThems);
     void addField(Field _field);
-    void addFriendTheme(int _i);
     void changeField(int fieldIndex, Field field);
     void deleteField(int _i);
+    void addFriendTheme(int _id);
+    void deleteFriendTheme(int _id);
 
     int Id();
     QString Name();
-    bool IsDeletavle();
+    bool IsDeletable();
     bool IsUsable();
     QList<Field> Fields();
     QList<int> FriendsThems();

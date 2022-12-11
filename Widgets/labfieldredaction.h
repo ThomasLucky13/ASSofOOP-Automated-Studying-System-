@@ -15,8 +15,8 @@ class LabFieldRedaction : public QWidget
     Q_OBJECT
 
 public:
-    explicit LabFieldRedaction(int themeId, int fieldId, MainWindow* mainWindow, QWidget *parent = nullptr);
-    explicit LabFieldRedaction(int themeId, MainWindow* mainWindow, QWidget *parent = nullptr);
+    explicit LabFieldRedaction(int fieldId, MainWindow* mainWindow, QWidget *parent = nullptr);
+    explicit LabFieldRedaction(MainWindow* mainWindow, QWidget *parent = nullptr);
     ~LabFieldRedaction();
 
 private:
@@ -25,8 +25,6 @@ private:
     Field * mField;
     LabsThemsManager * mThemsManager;
     QButtonGroup *methodsGroup;
-    int mThemeId;
-    QList<QPushButton *> buttons;
 
     bool creationMode;
 

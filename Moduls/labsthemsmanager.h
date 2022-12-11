@@ -12,26 +12,34 @@ private:
 
     int usedThemsIndex(int id);
     int unusedThemsIndex(int id);
-    int getFieldIndex(Theme theme, int id);
+    int getFieldIndex(Theme* theme, int id);
     int generateFieldId(Theme theme);
+    int generateThemeId();
+
+    void changeFriendsThems(int themeId, QList<int> friendsThems);
+
 
 public:
     LabsThemsManager();
+    ~LabsThemsManager();
 
     void updateManager();
     QList<Theme> thems();
 
     Theme* getTheme(int id);
-    Field* getField(int themeId, int id);
+    Field* getField(int id);
 
     int getThemeIdFromPosition(int index);
-    int getFieldIdFromPosition(int index, int themeId);
+    int getFieldIdFromPosition(int index);
 
-    void changeThemeUsable(int id, bool usable);
-    void changeField(int themeId, int fieldId, Field field);
-    void deleteField(int themeId, int fieldId);
-    void addField(int themeId, Field field);
+    void changeField(int fieldId, Field field);
+    void deleteField(int fieldId);
+    void addField(Field field);
 
+    void changeTheme(int themeId, Theme theme);
+    void deleteTheme(int themeId);
+    void addTheme(Theme theme);
+    Theme* creationTheme;
 };
 
 #endif // LABSTHEMSMANAGER_H

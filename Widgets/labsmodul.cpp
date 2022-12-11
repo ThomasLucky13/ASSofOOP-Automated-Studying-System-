@@ -36,6 +36,7 @@ LabsModul::LabsModul( MainWindow* mainWindow, QWidget *parent) :
                 new QSpacerItem(20,40, QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Expanding));
 
     connect(themsButtons, SIGNAL(idClicked(int)), mainWindow, SLOT(labsThemeRedactionModulOn(int)));
+    connect(ui->addTheme, SIGNAL(clicked()), mainWindow, SLOT(labsThemeCreateModulOn()));
 }
 
 LabsModul::~LabsModul()
