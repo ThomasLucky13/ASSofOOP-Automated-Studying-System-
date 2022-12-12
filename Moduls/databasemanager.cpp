@@ -83,6 +83,25 @@ QList<Theme> DatabaseManager::ReadThems()
                             {
                                 field.setName(fieldObject["name"].toString());
                             }
+                            if(fieldObject.contains("type") && fieldObject["type"].isDouble())
+                            {
+                                int typeIndex = fieldObject["type"].toInt();
+                                switch(typeIndex)
+                                {
+                                case fieldType::type_integer:
+                                    field.setType(fieldType::type_integer);
+                                    break;
+                                case fieldType::type_unsigned:
+                                    field.setType(fieldType::type_unsigned);
+                                    break;
+                                case fieldType::type_float:
+                                    field.setType(fieldType::type_float);
+                                    break;
+                                case fieldType::type_string:
+                                    field.setType(fieldType::type_string);
+                                    break;
+                                }
+                            }
                             if(fieldObject.contains("isRequired") && fieldObject["isRequired"].isBool())
                             {
                                 field.setRequired(fieldObject["isRequired"].toBool());
@@ -146,6 +165,7 @@ void DatabaseManager::WriteThems(QList<Theme> thems)
 
             fieldObject["id"] = field.Id();
             fieldObject["name"] = field.Name();
+            fieldObject["type"] = field.Type();
             fieldObject["isRequired"] = field.IsRequired();
 
             QJsonArray methodsArray;

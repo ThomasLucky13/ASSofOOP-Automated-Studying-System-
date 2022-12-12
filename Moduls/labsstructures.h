@@ -4,11 +4,23 @@
 #include <QString>
 #include <QList>
 
+struct fieldType
+{
+    enum Enum
+    {
+        type_integer,
+        type_unsigned,
+        type_float,
+        type_string
+    };
+};
+
 struct Field
 {
 private:
     QString id;
     QString name;
+    fieldType::Enum type;
     bool isRequired;
     QList<QString> methods;
 
@@ -16,13 +28,15 @@ public:
     Field();
     Field(QString _id);
     Field(QString _id, QString _name);
-    Field (QString _id, QString _name, bool _isRequired);
-    Field (QString _id, QString _name, bool _isRequired, QList<QString> _methods);
+    Field(QString _id, QString _name, fieldType::Enum _type);
+    Field (QString _id, QString _name, fieldType::Enum _type, bool _isRequired);
+    Field (QString _id, QString _name, fieldType::Enum _type, bool _isRequired, QList<QString> _methods);
     Field (QString _id, Field _other);
     ~Field();
 
     void setId(QString _id);
     void setName(QString _name);
+    void setType(fieldType::Enum _type);
     void setRequired(bool _isRequired);
     void setMethods(QList<QString> _methods);
     void addMethod(QString _method);
@@ -31,6 +45,7 @@ public:
 
     QString Id();
     QString Name();
+    fieldType::Enum Type();
     bool IsRequired();
     QList<QString> Methods();
     QString getMethod(int i);

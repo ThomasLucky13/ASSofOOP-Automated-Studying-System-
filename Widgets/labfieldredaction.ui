@@ -61,6 +61,20 @@
          </widget>
         </item>
         <item>
+         <widget class="QComboBox" name="typeComboBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(48, 64, 64);
+color: rgb(201, 209, 200);</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QLineEdit" name="FieldName">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">

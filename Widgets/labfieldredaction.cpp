@@ -18,13 +18,30 @@ LabFieldRedaction::LabFieldRedaction(QString fieldId, MainWindow* mainWindow, QW
         ui->isRequiredCheckBox->setEnabled(false);
         ui->deleteButton->setEnabled(false);
         ui->addMethod->setEnabled(false);
+        ui->typeComboBox->setEnabled(false);
     } else
     {
         ui->FieldName->setText(mField->Name());
         ui->isRequiredCheckBox->setChecked(mField->IsRequired());
+        ui->typeComboBox->addItems(typesText);
+        switch(mField->Type())
+        {
+        case fieldType::type_integer:
+            ui->typeComboBox->setCurrentIndex(0);
+            break;
+        case fieldType::type_unsigned:
+            ui->typeComboBox->setCurrentIndex(1);
+            break;
+        case fieldType::type_float:
+            ui->typeComboBox->setCurrentIndex(2);
+            break;
+        case fieldType::type_string:
+            ui->typeComboBox->setCurrentIndex(3);
+            break;
+        }
+
         methodsGroup = new QButtonGroup();
         setMethods();
-
     }
 
     connect(ui->backButton,  SIGNAL(clicked()), mainWindow, SLOT(labsThemeRedactionModulOn()));
@@ -46,6 +63,22 @@ LabFieldRedaction::LabFieldRedaction(MainWindow* mainWindow, QWidget *parent) :
 
     ui->FieldName->setText(mField->Name());
     ui->isRequiredCheckBox->setChecked(mField->IsRequired());
+    ui->typeComboBox->addItems(typesText);
+    switch(mField->Type())
+    {
+    case fieldType::type_integer:
+        ui->typeComboBox->setCurrentIndex(0);
+        break;
+    case fieldType::type_unsigned:
+        ui->typeComboBox->setCurrentIndex(1);
+        break;
+    case fieldType::type_float:
+        ui->typeComboBox->setCurrentIndex(2);
+        break;
+    case fieldType::type_string:
+        ui->typeComboBox->setCurrentIndex(3);
+        break;
+    }
     methodsGroup = new QButtonGroup();
     setMethods();
 
@@ -73,6 +106,23 @@ void LabFieldRedaction::fieldNameChanged()
 
 void LabFieldRedaction::saveChanges()
 {
+    int typeIndex = ui->typeComboBox->currentIndex();
+    switch(typeIndex)
+    {
+    case 0:
+        mField->setType(fieldType::type_integer);
+        break;
+    case 1:
+        mField->setType(fieldType::type_unsigned);
+        break;
+    case 2:
+        mField->setType(fieldType::type_float);
+        break;
+    case 3:
+        mField->setType(fieldType::type_string);
+        break;
+    }
+
     if (mField->Name().length() < 1)
     {
         ui->FieldName->setFocus();
@@ -80,10 +130,10 @@ void LabFieldRedaction::saveChanges()
     }
     if (creationMode)
     {
-        mThemsManager->addField(Field(mField->Id(), mField->Name(), mField->IsRequired(), mField->Methods()));
+        mThemsManager->addField(Field(mField->Id(), mField->Name(), mField->Type(), mField->IsRequired(), mField->Methods()));
     } else
     {
-        mThemsManager->changeField(mField->Id(), Field(mField->Id(), mField->Name(), mField->IsRequired(), mField->Methods()));
+        mThemsManager->changeField(mField->Id(), Field(mField->Id(), mField->Name(), mField->Type(), mField->IsRequired(), mField->Methods()));
     }
     ui->backButton->click();
 }

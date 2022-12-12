@@ -4,8 +4,9 @@
 // ============================= Field ============================= //
 Field::Field()
 {
-    id = -1;
+    id = "-1";
     name = "";
+    type = fieldType::type_string;
     isRequired = false;
     methods = QList<QString>();
 }
@@ -13,6 +14,7 @@ Field::Field(QString _id)
 {
     id = _id;
     name = "";
+    type = fieldType::type_string;
     isRequired = false;
     methods = QList<QString>();
 }
@@ -20,20 +22,31 @@ Field::Field(QString _id, QString _name)
 {
     id = _id;
     name = _name;
+    type = fieldType::type_string;
     isRequired = false;
     methods = QList<QString>();
 }
-Field::Field (QString _id, QString _name, bool _isRequired)
+Field::Field(QString _id, QString _name, fieldType::Enum _type)
 {
     id = _id;
     name = _name;
+    type = _type;
+    isRequired = false;
+    methods = QList<QString>();
+}
+Field::Field (QString _id, QString _name, fieldType::Enum _type, bool _isRequired)
+{
+    id = _id;
+    name = _name;
+    type = _type;
     isRequired = _isRequired;
     methods = QList<QString>();
 }
-Field::Field (QString _id, QString _name, bool _isRequired, QList<QString> _methods)
+Field::Field (QString _id, QString _name, fieldType::Enum _type, bool _isRequired, QList<QString> _methods)
 {
     id = _id;
     name = _name;
+    type = _type;
     isRequired = _isRequired;
     methods = _methods;
 }
@@ -41,6 +54,7 @@ Field::Field (QString _id, Field _other)
 {
     id = _id;
     name = _other.name;
+    type = _other.type;
     isRequired = _other.IsRequired();
     methods = _other.Methods();
 }
@@ -57,6 +71,10 @@ void Field::setId(QString _id)
 void Field::setName(QString _name)
 {
     name = _name;
+}
+void Field::setType(fieldType::Enum _type)
+{
+    type = _type;
 }
 void Field::setRequired(bool _isRequired)
 {
@@ -90,6 +108,10 @@ QString Field::Name()
 {
     return name;
 }
+fieldType::Enum Field::Type()
+{
+    return type;
+}
 bool Field::IsRequired()
 {
     return isRequired;
@@ -119,7 +141,7 @@ int Field::methodsCount()
 
 Theme::Theme()
 {
-    id = -1;
+    id = "-1";
     name = "";
     isDeletable = true;
     isUsable = false;
@@ -262,7 +284,7 @@ Field Theme::getField(int i)
     {
         return fields[i];
     }
-    return Field("-1", "NotFounded", false);
+    return Field("-1", "NotFounded", fieldType::type_string, false);
 }
 QString Theme::getFriendThemeId(int i)
 {
