@@ -12,6 +12,7 @@ CONFIG += c++11
 
 SOURCES += \
     Moduls/contextHTMLManager.cpp \
+    Moduls/databasemanager.cpp \
     Moduls/labsstructures.cpp \
     Moduls/labsthemsmanager.cpp \
     Widgets/fieldmethoddialog.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 
 HEADERS += \
     Moduls/contextHTMLManager.h \
+    Moduls/databasemanager.h \
     Moduls/labsstructures.h \
     Moduls/labsthemsmanager.h \
     Widgets/fieldmethoddialog.h \
