@@ -26,6 +26,8 @@ private:
     LabsThemsManager * mThemsManager;
     QButtonGroup *methodsGroup;
 
+    const QList<QString> typesText{"цел. знаковое", "цел. беззнаковое", "дробное", "строка"};
+
     bool creationMode;
 
     void setMethods();
