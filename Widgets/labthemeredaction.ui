@@ -70,7 +70,7 @@
            <set>Qt::AlignCenter</set>
           </property>
           <property name="placeholderText">
-           <string>(название метода)</string>
+           <string>(название темы)</string>
           </property>
          </widget>
         </item>

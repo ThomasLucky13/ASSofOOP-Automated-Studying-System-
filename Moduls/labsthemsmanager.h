@@ -23,7 +23,7 @@ public:
     LabsThemsManager();
     ~LabsThemsManager();
 
-    void updateManager();
+    void getThemsFromDatabase();
     QList<Theme> thems();
 
     Theme* getTheme(QString id);

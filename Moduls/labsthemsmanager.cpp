@@ -1,37 +1,35 @@
 #include "labsthemsmanager.h"
 #include <QtCore>
 #include <QUuid>
+#include "Moduls/databasemanager.h"
 
 LabsThemsManager::LabsThemsManager()
 {
-    updateManager();
+    getThemsFromDatabase();
+    creationTheme = new Theme("-1");
 }
 
 LabsThemsManager::~LabsThemsManager()
 {
+    DatabaseManager().WriteThems(thems());
     delete creationTheme;
 }
 
-void LabsThemsManager::updateManager()
+void LabsThemsManager::getThemsFromDatabase()
 {
-    QList <QString> methods;
-    for (int i = 0; i < 5; ++i)
-    {
-        methods.push_back("Method " + QString::number(i));
-    }
-    QList<Field> fields;
-    for (int i = 0; i < 5; ++i)
-    {
-        fields.push_back(Field(QString::number(i), "Field " + QString::number(i), true, methods));
-    }
-    for (int i = 0; i <5; ++i)
-    {
-        usedThems.push_back(Theme(QString::number(i), "Theme " + QString::number(i), false, true, fields));
-    }
+    QList<Theme> thems = DatabaseManager().ReadThems();
 
-    for (int i = 5; i <10; ++i)
+    usedThems.clear();
+    unusedThems.clear();
+    for (int i = 0 ; i < thems.count(); ++i)
     {
-        unusedThems.push_back(Theme(QString::number(i), "Theme " + QString::number(i), false, false, fields));
+        if (thems[i].IsUsable())
+        {
+            usedThems.push_back(thems[i]);
+        }else
+        {
+            unusedThems.push_back(thems[i]);
+        }
     }
 }
 QList<Theme> LabsThemsManager::thems()
@@ -136,7 +134,6 @@ void LabsThemsManager::deleteField(QString fieldId)
 void LabsThemsManager::addField(Field field)
 {
     field.setId(QUuid().createUuid().toString());
-    qWarning()<<field.Id();
     creationTheme->addField(field);
 }
 
@@ -198,7 +195,6 @@ void LabsThemsManager::addTheme(Theme theme)
 {
     //theme.setId(generateThemeId());
     theme.setId(QUuid().createUuid().toString());
-    qWarning()<<theme.Id();
     if (theme.IsUsable())
     {
         usedThems.push_back(theme);
