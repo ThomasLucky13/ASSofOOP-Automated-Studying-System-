@@ -25,6 +25,7 @@ public:
 
     void getThemsFromDatabase();
     QList<Theme> thems();
+    QList<Theme> getUsedThems();
 
     Theme* getTheme(QString id);
     Field* getField(QString id);

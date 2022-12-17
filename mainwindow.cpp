@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "Widgets/theorymodul.h"
+#include "Widgets/labsRedactionModul.h"
 #include "Widgets/labsmodul.h"
 #include "Widgets/testmodul.h"
 #include "Widgets/labthemeredaction.h"
 #include "Widgets/labfieldredaction.h"
+#include "Widgets/labsRedactionModul.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -62,6 +64,17 @@ void MainWindow::labsModulOn()
     themeCreation = false;
     delete currentWidget;
     currentWidget = new LabsModul(this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
+
+void MainWindow::labsRedactionModulOn()
+{
+    themeCreation = false;
+    delete currentWidget;
+    currentWidget = new LabsRedactionModul(this);
     ui->TheoryButton->setEnabled(true);
     ui->TestButton->setEnabled(true);
     ui->LabsButton->setEnabled(false);

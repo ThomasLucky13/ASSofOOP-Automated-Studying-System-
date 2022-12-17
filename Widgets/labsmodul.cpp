@@ -1,48 +1,27 @@
 #include "labsmodul.h"
 #include "ui_labsmodul.h"
+#include <QLabel>
 
-#include <QPushButton>
-#include <string>
-
-#include "Moduls/labsthemsmanager.h"
-
-#include <iostream>
-
-LabsModul::LabsModul( MainWindow* mainWindow, QWidget *parent) :
+LabsModul::LabsModul(MainWindow* mMainWindow, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LabsModul)
 {
-    qWarning("Create Labs");
-    mThemsManager = mainWindow->themsManager;
     ui->setupUi(this);
 
-    themsButtons = new QButtonGroup();
-    QList<Theme> thems = mThemsManager->thems();
-    for (int i = 0; i < thems.count(); ++i)
-    {
-        QPushButton* button = new QPushButton();
-        button->setText("  "+thems[i].Name());
-        if(thems[i].IsUsable())
-        {
-            button->setStyleSheet("text-align:left;\ncolor: rgb(4, 32, 44);");
-        } else
-        {
-            button->setStyleSheet("text-align:left;\ncolor: rgb(4, 32, 44);\nbackground-color: rgb(201, 209, 200);");
-        }
-        themsButtons->addButton(button, i);
-        ui->contextLayout->addWidget(button);
-    }
-    ui->contextLayout->addSpacerItem(
-                new QSpacerItem(20,40, QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Expanding));
+    QList<Theme> usedThems = mMainWindow->themsManager->getUsedThems();
 
-    connect(themsButtons, SIGNAL(idClicked(int)), mainWindow, SLOT(labsThemeRedactionModulOn(int)));
-    connect(ui->addTheme, SIGNAL(clicked()), mainWindow, SLOT(labsThemeCreateModulOn()));
+    for (int i = 0; i < usedThems.count(); ++i)
+    {
+        QLabel* themeLabel = new QLabel();
+        themeLabel->setText(usedThems[i].Name());
+        themeLabel->setStyleSheet("color: rgb(201, 209, 200);");
+        ui->themsLayout->addWidget(themeLabel);
+    }
+
+    connect(ui->themsEditButton, SIGNAL(clicked()), mMainWindow, SLOT(labsRedactionModulOn()));
 }
 
 LabsModul::~LabsModul()
 {
-    qWarning("Delete Labs");
-    delete themsButtons;
     delete ui;
 }
-

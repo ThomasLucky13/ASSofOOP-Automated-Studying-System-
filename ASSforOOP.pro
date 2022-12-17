@@ -17,11 +17,12 @@ SOURCES += \
     Moduls/labsthemsmanager.cpp \
     Widgets/fieldmethoddialog.cpp \
     Widgets/labfieldredaction.cpp \
-    Widgets/labsmodul.cpp \
+    Widgets/labsRedactionModul.cpp \
     Widgets/labthemeredaction.cpp \
     Widgets/testmodul.cpp \
     Widgets/themefriendsthemsredaction.cpp \
     Widgets/theorymodul.cpp \
+    Widgets/labsmodul.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -32,21 +33,23 @@ HEADERS += \
     Moduls/labsthemsmanager.h \
     Widgets/fieldmethoddialog.h \
     Widgets/labfieldredaction.h \
-    Widgets/labsmodul.h \
+    Widgets/labsRedactionModul.h \
     Widgets/labthemeredaction.h \
     Widgets/testmodul.h \
     Widgets/themefriendsthemsredaction.h \
     Widgets/theorymodul.h \
+    Widgets/labsmodul.h \
     mainwindow.h
 
 FORMS += \
     Widgets/fieldmethoddialog.ui \
     Widgets/labfieldredaction.ui \
-    Widgets/labsmodul.ui \
+    Widgets/labsRedactionModul.ui \
     Widgets/labthemeredaction.ui \
     Widgets/testmodul.ui \
     Widgets/themefriendsthemsredaction.ui \
     Widgets/theorymodul.ui \
+    Widgets/labsmodul.ui \
     mainwindow.ui
 
 # Default rules for deployment.

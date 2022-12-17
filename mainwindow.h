@@ -19,6 +19,7 @@ public:
 
 public slots:
     void labsModulOn();
+    void labsRedactionModulOn();
     void labsThemeRedactionModulOn(int id);
     void labsThemeRedactionModulOn();
     void labsFieldRedactionModulOn(int id);

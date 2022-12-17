@@ -39,6 +39,11 @@ QList<Theme> LabsThemsManager::thems()
     return res;
 }
 
+QList<Theme> LabsThemsManager::getUsedThems()
+{
+    return usedThems;
+}
+
 Theme * LabsThemsManager::getTheme(QString id)
 {
     for (int i = 0; i < usedThems.count(); ++i)
