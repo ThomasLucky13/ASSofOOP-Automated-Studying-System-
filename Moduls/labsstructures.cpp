@@ -312,3 +312,61 @@ void Theme::deleteFriendTheme(QString _id)
     if(friendsThems.contains(_id)) friendsThems.removeAll(_id);
 }
 //===================================================================//
+
+// ============================== Task ============================= //
+Task::Task()
+{
+    id = "-1";
+    name = "";
+    text = "";
+}
+Task::Task(QString _id)
+{
+    id = _id;
+    name = "";
+    text = "";
+}
+Task::Task(QString _id, QString _name)
+{
+    id = _id;
+    name = _name;
+    text = "";
+}
+Task::Task(QString _id, QString _name, QString _text)
+{
+    id = _id;
+    name = _name;
+    text = _text;
+}
+Task::Task(const Task & _other)
+{
+    id = _other.id;
+    name = _other.name;
+    text = _other.text;
+}
+void Task::setId(QString _id)
+{
+    id = _id;
+}
+void Task::setName(QString _name)
+{
+    name = _name;
+}
+void Task::setText(QString _text)
+{
+    text = _text;
+}
+
+QString Task::Id()
+{
+    return id;
+}
+QString Task::Name()
+{
+    return name;
+}
+QString Task::Text()
+{
+    return text;
+}
+//===================================================================//

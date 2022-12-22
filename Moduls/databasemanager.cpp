@@ -9,6 +9,7 @@
 DatabaseManager::DatabaseManager()
 {
     themsDatabaseFileName = QDir().absolutePath()+ "/resources/labsMaterials/labsDatabase.dat";
+    tasksDatabaseFileName = QDir().absolutePath()+ "/resources/labsMaterials/tasksDatabase.dat";
 }
 
 QJsonObject DatabaseManager::getJsonObjectFromFile(QString fileName)
@@ -195,4 +196,52 @@ void DatabaseManager::WriteThems(QList<Theme> thems)
     json["Thems"] = themsArray;
 
     writeJsonObjectToFile(json, themsDatabaseFileName);
+}
+
+QList<Task> DatabaseManager::ReadTasks()
+{
+    QList<Task> tasks;
+    QJsonObject json = getJsonObjectFromFile(tasksDatabaseFileName);
+
+    if (json.contains("Tasks") && json["Tasks"].isArray()) {
+        QJsonArray tasksArray = json["Tasks"].toArray();
+        for (int taskIndex = 0; taskIndex < tasksArray.size(); ++taskIndex)
+        {
+            QJsonObject taskObject = tasksArray[taskIndex].toObject();
+            if (taskObject.contains("id") && taskObject["id"].isString())
+            {
+                Task task = Task(taskObject["id"].toString());
+                if (taskObject.contains("name") && taskObject["name"].isString())
+                {
+                    task.setText(taskObject["name"].toString());
+                }
+                if (taskObject.contains("text") && taskObject["text"].isString())
+                {
+                    task.setText(taskObject["text"].toString());
+                }
+                tasks.push_back(task);
+            }
+
+        }
+    }
+    return tasks;
+}
+void DatabaseManager::WriteTasks(QList<Task> tasks)
+{
+    QJsonObject json;
+
+    QJsonArray tasksArray;
+
+    for (Task task : tasks)
+    {
+        QJsonObject taskObject;
+
+        taskObject["id"] = task.Id();
+        taskObject["name"] = task.Name();
+        taskObject["text"] = task.Text();
+        tasksArray.append(taskObject);
+    }
+    json["Tasks"] = tasksArray;
+
+    writeJsonObjectToFile(json, tasksDatabaseFileName);
 }

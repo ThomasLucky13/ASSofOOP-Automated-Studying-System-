@@ -97,4 +97,27 @@ public:
     int friendsThemsCount();
 
 };
+
+struct Task
+{
+private:
+    QString id;
+    QString name;
+    QString text;
+public:
+    Task();
+    Task(QString _id);
+    Task(QString _id, QString _name);
+    Task(QString _id, QString _name, QString _text);
+    Task(const Task & _other);
+
+    void setId(QString _id);
+    void setName(QString _name);
+    void setText(QString _text);
+
+    QString Id();
+    QString Name();
+    QString Text();
+};
+
 #endif // LABSSTRUCTURES_H
