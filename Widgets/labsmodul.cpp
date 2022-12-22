@@ -18,6 +18,16 @@ LabsModul::LabsModul(MainWindow* mMainWindow, QWidget *parent) :
         ui->themsLayout->addWidget(themeLabel);
     }
 
+    QList<Task> tasks = mMainWindow->tasksManager->getTasks();
+
+    for (int i = 0; i < tasks.count(); ++i)
+    {
+        QLabel* taskLabel = new QLabel();
+        taskLabel->setText(tasks[i].Name());
+        taskLabel->setStyleSheet("color: rgb(201, 209, 200);");
+        ui->tasksLayout->addWidget(taskLabel);
+    }
+
     connect(ui->themsEditButton, SIGNAL(clicked()), mMainWindow, SLOT(labsRedactionModulOn()));
 }
 

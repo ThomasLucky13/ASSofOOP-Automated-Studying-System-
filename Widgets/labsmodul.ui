@@ -10,6 +10,12 @@
     <height>621</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -17,7 +23,7 @@
    <item>
     <widget class="QWidget" name="TaskWidget" native="true">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -53,6 +59,12 @@
            <height>167</height>
           </rect>
          </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(48, 64, 64);</string>
          </property>
@@ -77,6 +89,12 @@
         </item>
         <item>
          <widget class="QPushButton" name="taskEditButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="icon">
            <iconset resource="../resources/ASSforOOP.qrc">
             <normaloff>:/images/Edit.svg</normaloff>:/images/Edit.svg</iconset>
@@ -99,6 +117,12 @@
    </item>
    <item>
     <widget class="Line" name="line">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(48, 64, 64);</string>
      </property>
@@ -145,6 +169,12 @@
            <width>849</width>
            <height>167</height>
           </rect>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(48, 64, 64);</string>

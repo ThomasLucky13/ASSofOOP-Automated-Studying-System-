@@ -15,6 +15,7 @@ SOURCES += \
     Moduls/databasemanager.cpp \
     Moduls/labsstructures.cpp \
     Moduls/labsthemsmanager.cpp \
+    Moduls/labstasksmanager.cpp \
     Widgets/fieldmethoddialog.cpp \
     Widgets/labfieldredaction.cpp \
     Widgets/labsRedactionModul.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     Moduls/databasemanager.h \
     Moduls/labsstructures.h \
     Moduls/labsthemsmanager.h \
+    Moduls/labstasksmanager.h \
     Widgets/fieldmethoddialog.h \
     Widgets/labfieldredaction.h \
     Widgets/labsRedactionModul.h \

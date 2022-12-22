@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "Moduls/labsthemsmanager.h"
+#include "Moduls/labstasksmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,6 +16,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     LabsThemsManager * themsManager;
+    labsTasksManager * tasksManager;
     ~MainWindow();
 
 public slots:
@@ -36,5 +38,6 @@ private:
     QWidget *currentWidget;
     int currentThemeId;
     bool themeCreation;
+    bool taskCreation;
 };
 #endif // MAINWINDOW_H

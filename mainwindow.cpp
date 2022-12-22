@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     themsManager = new LabsThemsManager();
+    tasksManager = new labsTasksManager();
     currentWidget = new TheoryModul();
     ui->TheoryButton->setEnabled(false);
     ui->TestButton->setEnabled(true);
@@ -23,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->verticalLayout->insertWidget(0, currentWidget);
 
     themeCreation = false;
+    taskCreation = false;
 
     connect(ui->TheoryButton, SIGNAL(clicked()), this, SLOT(theoryModulOn()));
     connect(ui->TestButton, SIGNAL(clicked()), this, SLOT(testModulOn()));
@@ -34,12 +36,14 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete themsManager;
+    delete tasksManager;
     delete currentWidget;
 }
 
 void MainWindow::theoryModulOn()
 {
     themeCreation = false;
+    taskCreation = false;
     delete currentWidget;
     currentWidget = new TheoryModul();
     ui->TheoryButton->setEnabled(false);
@@ -51,6 +55,7 @@ void MainWindow::theoryModulOn()
 void MainWindow::testModulOn()
 {
     themeCreation = false;
+    taskCreation = false;
     delete currentWidget;
     currentWidget = new TestModul();
     ui->TheoryButton->setEnabled(true);
@@ -62,6 +67,7 @@ void MainWindow::testModulOn()
 void MainWindow::labsModulOn()
 {
     themeCreation = false;
+    taskCreation = false;
     delete currentWidget;
     currentWidget = new LabsModul(this);
     ui->TheoryButton->setEnabled(true);
@@ -73,6 +79,7 @@ void MainWindow::labsModulOn()
 void MainWindow::labsRedactionModulOn()
 {
     themeCreation = false;
+    taskCreation = false;
     delete currentWidget;
     currentWidget = new LabsRedactionModul(this);
     ui->TheoryButton->setEnabled(true);
