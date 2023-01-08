@@ -6,6 +6,8 @@
 #include "Widgets/labthemeredaction.h"
 #include "Widgets/labfieldredaction.h"
 #include "Widgets/labsRedactionModul.h"
+#include "Widgets/tasksreadctionmodul.h"
+#include "Widgets/labtaskreadctionmodul.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -135,6 +137,36 @@ void MainWindow::labsThemeCreateModulOn()
     themeCreation = true;
     themsManager->creationTheme = new Theme("-1", "", true, true, QList<Field>(), QList<QString>());
     currentWidget = new LabThemeRedaction(themsManager->creationTheme, this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
+
+void MainWindow::labsTasksRedactionModulOn()
+{
+    delete currentWidget;
+    themeCreation = false;
+    taskCreation = false;
+    currentWidget = new TasksReadctionModul(this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
+void MainWindow::labsTaskRedactionModulOn(int id)
+{
+    delete currentWidget;
+    currentWidget = new labTaskReadctionModul(tasksManager->getTaskIdFromIndex(id), this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
+}
+void MainWindow::labsTaskCreateModulOn()
+{
+    delete currentWidget;
+    currentWidget = new labTaskReadctionModul(this);
     ui->TheoryButton->setEnabled(true);
     ui->TestButton->setEnabled(true);
     ui->LabsButton->setEnabled(false);

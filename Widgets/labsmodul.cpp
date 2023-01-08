@@ -29,6 +29,7 @@ LabsModul::LabsModul(MainWindow* mMainWindow, QWidget *parent) :
     }
 
     connect(ui->themsEditButton, SIGNAL(clicked()), mMainWindow, SLOT(labsRedactionModulOn()));
+    connect(ui->taskEditButton, SIGNAL(clicked()), mMainWindow, SLOT(labsTasksRedactionModulOn()));
 }
 
 LabsModul::~LabsModul()
