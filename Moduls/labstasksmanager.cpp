@@ -1,7 +1,6 @@
 #include "labstasksmanager.h"
 #include "Moduls/databasemanager.h"
 #include <QUuid>
-
 labsTasksManager::labsTasksManager()
 {
     //tasks = DatabaseManager().ReadTasks();
@@ -60,4 +59,14 @@ void labsTasksManager::ChangeTask(QString id, Task task)
 Task labsTasksManager::getTask(int index)
 {
     return tasks[index];
+}
+Task* labsTasksManager::getTask(QString id)
+{
+    Task task = tasks[getTaskIndexFromId(id)];
+    return new Task(task);
+}
+QString labsTasksManager::getTaskIdFromIndex(int index)
+{
+    if (index >= tasks.count()) return "-1";
+    return tasks[index].Id();
 }

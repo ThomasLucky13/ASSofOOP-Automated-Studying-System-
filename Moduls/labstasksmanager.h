@@ -21,6 +21,8 @@ public:
     void DeleteTask(QString id);
     void ChangeTask(QString id, Task task);
     Task getTask(int index);
+    Task* getTask(QString id);
+    QString getTaskIdFromIndex(int index);
 
 };
 

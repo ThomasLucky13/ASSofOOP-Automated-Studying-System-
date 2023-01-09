@@ -19,7 +19,9 @@ SOURCES += \
     Widgets/fieldmethoddialog.cpp \
     Widgets/labfieldredaction.cpp \
     Widgets/labsRedactionModul.cpp \
+    Widgets/labtaskreadctionmodul.cpp \
     Widgets/labthemeredaction.cpp \
+    Widgets/tasksreadctionmodul.cpp \
     Widgets/testmodul.cpp \
     Widgets/themefriendsthemsredaction.cpp \
     Widgets/theorymodul.cpp \
@@ -36,7 +38,9 @@ HEADERS += \
     Widgets/fieldmethoddialog.h \
     Widgets/labfieldredaction.h \
     Widgets/labsRedactionModul.h \
+    Widgets/labtaskreadctionmodul.h \
     Widgets/labthemeredaction.h \
+    Widgets/tasksreadctionmodul.h \
     Widgets/testmodul.h \
     Widgets/themefriendsthemsredaction.h \
     Widgets/theorymodul.h \
@@ -47,7 +51,9 @@ FORMS += \
     Widgets/fieldmethoddialog.ui \
     Widgets/labfieldredaction.ui \
     Widgets/labsRedactionModul.ui \
+    Widgets/labtaskreadctionmodul.ui \
     Widgets/labthemeredaction.ui \
+    Widgets/tasksreadctionmodul.ui \
     Widgets/testmodul.ui \
     Widgets/themefriendsthemsredaction.ui \
     Widgets/theorymodul.ui \
