@@ -44,6 +44,11 @@ labTaskReadctionModul::labTaskReadctionModul(MainWindow* mainWindow, QWidget *pa
 void labTaskReadctionModul::saveChanges()
 {
     mTask->setName(ui->TaskName->text());
+    if (mTask->Name().length() < 1)
+    {
+        ui->TaskName->setFocus();
+        return;
+    }
     mTask->setText(ui->textEdit->toPlainText());
     if (creationMode)
     {

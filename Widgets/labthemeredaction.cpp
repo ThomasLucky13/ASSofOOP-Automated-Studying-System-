@@ -29,7 +29,7 @@ LabThemeRedaction::LabThemeRedaction(bool _creationMode, MainWindow* mainWindow,
 
     connect(ui->ThemeName, SIGNAL(editingFinished()), this, SLOT(themeNameChanged()));
     connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveChanges()));
-    connect(ui->backButton,  SIGNAL(clicked()), mainWindow, SLOT(labsModulOn()));
+    connect(ui->backButton,  SIGNAL(clicked()), mainWindow, SLOT(labsRedactionModulOn()));
     connect(ui->addField, SIGNAL(clicked()), mainWindow, SLOT(labsFieldCreateModulOn()));
     connect(ui->isUsableCheckBox, SIGNAL(clicked()), this, SLOT(isUsableChanged()));
     connect(themeFieldsGroup, SIGNAL(idClicked(int)), mainWindow, SLOT(labsFieldRedactionModulOn(int)));
