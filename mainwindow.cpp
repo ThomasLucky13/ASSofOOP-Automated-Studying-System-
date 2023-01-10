@@ -8,6 +8,7 @@
 #include "Widgets/labsRedactionModul.h"
 #include "Widgets/tasksreadctionmodul.h"
 #include "Widgets/labtaskreadctionmodul.h"
+#include "Widgets/labtaskveiwmodul.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -175,7 +176,12 @@ void MainWindow::labsTaskCreateModulOn()
 
 void MainWindow::labsTaskViewModulOn(int id)
 {
-
+    delete currentWidget;
+    currentWidget = new labTaskVeiwModul(tasksManager->getTask(id), this);
+    ui->TheoryButton->setEnabled(true);
+    ui->TestButton->setEnabled(true);
+    ui->LabsButton->setEnabled(false);
+    ui->verticalLayout->insertWidget(0, currentWidget);
 }
 
 void MainWindow::settingsOpen()

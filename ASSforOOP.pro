@@ -20,6 +20,7 @@ SOURCES += \
     Widgets/labfieldredaction.cpp \
     Widgets/labsRedactionModul.cpp \
     Widgets/labtaskreadctionmodul.cpp \
+    Widgets/labtaskveiwmodul.cpp \
     Widgets/labthemeredaction.cpp \
     Widgets/tasksreadctionmodul.cpp \
     Widgets/testmodul.cpp \
@@ -39,6 +40,7 @@ HEADERS += \
     Widgets/labfieldredaction.h \
     Widgets/labsRedactionModul.h \
     Widgets/labtaskreadctionmodul.h \
+    Widgets/labtaskveiwmodul.h \
     Widgets/labthemeredaction.h \
     Widgets/tasksreadctionmodul.h \
     Widgets/testmodul.h \
@@ -52,6 +54,7 @@ FORMS += \
     Widgets/labfieldredaction.ui \
     Widgets/labsRedactionModul.ui \
     Widgets/labtaskreadctionmodul.ui \
+    Widgets/labtaskveiwmodul.ui \
     Widgets/labthemeredaction.ui \
     Widgets/tasksreadctionmodul.ui \
     Widgets/testmodul.ui \
