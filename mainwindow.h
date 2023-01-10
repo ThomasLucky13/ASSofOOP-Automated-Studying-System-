@@ -30,6 +30,7 @@ public slots:
     void labsTasksRedactionModulOn();
     void labsTaskRedactionModulOn(int id);
     void labsTaskCreateModulOn();
+    void labsTaskViewModulOn(int id);
 
 protected slots:
     void theoryModulOn();

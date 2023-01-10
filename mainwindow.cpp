@@ -173,6 +173,10 @@ void MainWindow::labsTaskCreateModulOn()
     ui->verticalLayout->insertWidget(0, currentWidget);
 }
 
+void MainWindow::labsTaskViewModulOn(int id)
+{
+
+}
 
 void MainWindow::settingsOpen()
 {

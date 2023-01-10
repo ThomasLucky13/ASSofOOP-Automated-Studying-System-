@@ -2,6 +2,7 @@
 #define LABSMODUL_H
 
 #include <QWidget>
+#include <QButtonGroup>
 #include "mainwindow.h"
 
 namespace Ui {
@@ -18,6 +19,7 @@ public:
 
 private:
     Ui::LabsModul *ui;
+    QButtonGroup *tasksButtons;
 };
 
 #endif // LABSMODUL_H
