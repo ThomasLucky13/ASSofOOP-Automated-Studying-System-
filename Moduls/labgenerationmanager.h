@@ -9,7 +9,7 @@ class labGenerationManager
 public:
     labGenerationManager();
     labGenerationManager(Task _task, LabsThemsManager* themsManager);
-    QString generateLabHTML();
+    QString generateLabHTML(int _width);
 
 private:
     LabsThemsManager* mThemsManager;

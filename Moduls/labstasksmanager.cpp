@@ -4,7 +4,8 @@
 labsTasksManager::labsTasksManager()
 {
     //tasks = DatabaseManager().ReadTasks();
-    for (int i = 0; i < 5; i++)
+    tasks.push_back(Task(QString::number(0), "Лабораторная №1", "Реализовать класс с указанными полями и методами. Все поля должны быть закрытыми, а методы открытыми. Реализовать также конструктор и инит-функцию."));
+    for (int i = 1; i < 5; i++)
     {
         tasks.push_back(Task(QString::number(i), "Task N"+QString::number(i), "Текст задания"));
     }
