@@ -13,6 +13,7 @@ CONFIG += c++11
 SOURCES += \
     Moduls/contextHTMLManager.cpp \
     Moduls/databasemanager.cpp \
+    Moduls/labgenerationmanager.cpp \
     Moduls/labsstructures.cpp \
     Moduls/labsthemsmanager.cpp \
     Moduls/labstasksmanager.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
 HEADERS += \
     Moduls/contextHTMLManager.h \
     Moduls/databasemanager.h \
+    Moduls/labgenerationmanager.h \
     Moduls/labsstructures.h \
     Moduls/labsthemsmanager.h \
     Moduls/labstasksmanager.h \

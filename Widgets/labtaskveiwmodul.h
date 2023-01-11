@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "mainwindow.h"
+#include "Moduls/labgenerationmanager.h"
 
 namespace Ui {
 class labTaskVeiwModul;
@@ -20,8 +21,9 @@ protected slots:
     void GenerateLab();
 private:
     Ui::labTaskVeiwModul *ui;
-    QString HTMLText;
+    QString HTMLtext;
     Task task;
+    labGenerationManager generationManager;
 };
 
 #endif // LABTASKVEIWMODUL_H

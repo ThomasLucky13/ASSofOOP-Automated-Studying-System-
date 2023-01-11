@@ -7,6 +7,7 @@ labTaskVeiwModul::labTaskVeiwModul(Task _task, MainWindow* mainWindow, QWidget *
 {
     task = _task;
     ui->setupUi(this);
+    generationManager = labGenerationManager(task, mainWindow->themsManager);
     ui->scrollArea->setVisible(false);
     ui->TaskName->setText(task.Name());
     ui->taskText->setText(task.Text());
@@ -17,8 +18,9 @@ labTaskVeiwModul::labTaskVeiwModul(Task _task, MainWindow* mainWindow, QWidget *
 
 void labTaskVeiwModul::GenerateLab()
 {
-    HTMLText = "generatedHTML";
-    ui->webEngineView->setHtml(HTMLText);
+
+    HTMLtext = generationManager.generateLabHTML();
+    ui->webEngineView->setHtml(HTMLtext);
     ui->scrollArea->setVisible(true);
 }
 
